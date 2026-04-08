@@ -8,7 +8,7 @@
 <div class="admin-container">
             <p>Hello <strong>{{  'Tgg India' }}</strong> (not <strong>{{  'Tgg India' }}</strong>? <a href="#">Log out</a>)</p>
 
-            <p><strong>WELCOME TO TGG-EDGE</strong></p>
+            <p><strong>WELCOME TO TGG-EDGE </strong></p>
 
             <p>It is a dynamic hub where ethical research meets grassroots action. This is where your inquiries, insights, and efforts converge to shape meaningful change through collaborative, well-coordinated projects.</p>
 

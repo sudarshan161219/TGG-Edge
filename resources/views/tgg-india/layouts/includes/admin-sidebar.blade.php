@@ -12,472 +12,287 @@
         $dashboardRoute = route('user.dashboard'); 
     } 
 @endphp --}}
-<a href="{{ route('tgg-india.admin.dashboard') }}"
-    class="{{ request()->is('tgg-meta/tgg-india/dashboard') ? 'active' : '' }}">
-    <i class="fas fa-tachometer-alt"></i> Dashboard
-</a>
 
+<aside class="sidebar">
 
-<a href="{{ route('tgg-india.admin.profile.index') }}" class="{{ request()->is('user/profile') ? 'active' : '' }}"><i
-        class="fas fa-user"></i> Profile</a>
-
-
-<div class="dropdown">
-    <a href="#"
-        class="dropdown-toggle d-flex justify-content-between align-items-center {{ request()->is('tgg-meta/tgg-india/admin/showcases*') ? 'active' : '' }}"
-        data-bs-toggle="collapse" data-bs-target="#showcaseDropdown"
-        aria-expanded="{{ request()->is('tgg-meta/tgg-india/admin/showcases*') ? 'true' : 'false' }}">
-        <span><i class="fa-solid fa-display me-2"></i> Showcase</span>
-        <i class="fas fa-caret-down"></i>
-    </a>
-
-    <div class="collapse ps-3 {{ request()->is('tgg-meta/tgg-india/admin/showcases*') ? 'show' : '' }}"
-        id="showcaseDropdown">
-
-        <a href="{{ route('tgg-india.admin.showcases.welcome-notes.edit') }}#welcome-notes" class="d-block py-1">
-            <i class="fas fa-sticky-note me-2"></i> Welcome Notes
-        </a>
-
-        <a href="{{ route('tgg-india.admin.showcases.collaborative-projects.edit') }}#collaborative-projects"
-            class="d-block py-1">
-            <i class="fas fa-handshake me-2"></i> Collaborative Projects
-        </a>
-
-        <a href="{{ route('tgg-india.admin.showcases.main-projects.edit') }}#main-projects" class="d-block py-1">
-            <i class="fas fa-project-diagram me-2"></i> Main Projects
-        </a>
-
-        <a href="{{ route('tgg-india.admin.showcases.freelance-opportunities.edit') }}#freelance-opportunities"
-            class="d-block py-1">
-            <i class="fas fa-briefcase me-2"></i> Freelance Opportunities
-        </a>
-
-        <a href="{{ route('tgg-india.admin.showcases.reward.edit') }}#freelance-opportunities"
-                    class="d-block py-1">
-                    <i class="fas fa-gift me-2"></i> Reward Program Content
-        </a>
-
-        <!-- ========================= -->
-        <!--   NEW REFERRAL PROGRAM DROPDOWN  -->
-        <!-- ========================= -->
-        <div class="dropdown">
-            <a href="#" class="dropdown-toggle d-flex justify-content-between align-items-center py-1   "
-                data-bs-toggle="collapse" data-bs-target="#referralDropdown">
-                <span><i class="fas fa-users me-2"></i> Referral Program</span>
-                <i class="fas fa-caret-down"></i>
-            </a>
-
-            <div class="collapse ps-3" id="referralDropdown">
-
-                <a href="{{ route('tgg-india.admin.showcases.referral.edit') }}#main-projects" class="d-block py-1">
-                    <i class="fas fa-user-friends me-2"></i> Admin  Description
-                </a>
-
-                <a href="{{ route('tgg-india.admin.showcases.referral-link.edit',['admin']) }}" class="d-block py-1">
-                    <i class="fas fa-project-diagram me-2"></i> Admin  Link
-                </a>
-
-                <a href="{{ route('tgg-india.admin.showcases.referral-description.edit',['associate']) }}#main-projects" class="d-block py-1">
-                    <i class="fas fa-user-friends me-2"></i> Associate Description 
-                </a>
-
-                <a href="#" class="d-block py-1">
-                    <i class="fas fa-project-diagram me-2"></i> Associate Link
-                </a>
-
-                <a href="{{  route('tgg-india.admin.showcases.referral-description.edit',['co-creator'])}}#main-projects" class="d-block py-1">
-                    <i class="fas fa-user-friends me-2"></i> Co-Creator Description
-                </a>
-                <a href="{{ route('tgg-india.admin.showcases.referral-link.edit',['co-creator']) }}" class="d-block py-1">
-                    <i class="fas fa-project-diagram me-2"></i> Co-Creator Link
-                </a>
-
-
-                
-
-                <a href="{{  route('tgg-india.admin.showcases.referral-description.edit',['spouse'])}}#main-projects" class="d-block py-1">
-                    <i class="fas fa-user-friends me-2"></i> Spouse Description
-                </a>
-                <a href="{{ route('tgg-india.admin.showcases.referral-link.edit',['spouse']) }}" class="d-block py-1">
-                    <i class="fas fa-project-diagram me-2"></i> Spouse  Link
-                </a>
-
-
-                {{-- <a href="{{  route('tgg-india.admin.showcases.referral-description.edit',['rhm-club'])}}#main-projects" class="d-block py-1">
-                    <i class="fas fa-user-friends me-2"></i> RHM Club Referral Description
-                </a>
-                <a href="{{ route('tgg-india.admin.showcases.referral-link.edit',['rhm-club']) }}" class="d-block py-1">
-                    <i class="fas fa-user-friends me-2"></i> RHM Club Referral Link
-                </a> --}}
-
-                <a href="{{  route('tgg-india.admin.showcases.referral-description.edit',['facilitator'])}}#main-projects" class="d-block py-1">
-                    <i class="fas fa-user-friends me-2"></i> Facilitator Description
-                </a>
-                <a href="{{ route('tgg-india.admin.showcases.referral-link.edit',['facilitator']) }}" class="d-block py-1">
-                    <i class="fas fa-project-diagram me-2"></i> Facilitator Link
-                </a>
-
-
-                <a href="{{  route('tgg-india.admin.showcases.referral-description.edit',['freelancer'])}}#main-projects" class="d-block py-1">
-                    <i class="fas fa-user-friends me-2"></i> Freelancer Description
-                </a>
-                <a href="{{ route('tgg-india.admin.showcases.referral-link.edit',['freelancer']) }}" class="d-block py-1">
-                    <i class="fas fa-project-diagram me-2"></i> Freelancer Link
-                </a>
-            
-                {{-- <a href="{{ route('tgg-india.admin.showcases.lead-referral.edit') }}#freelance-opportunities"
-                    class="d-block py-1">
-                    <i class="fas fa-project-diagram me-2"></i> Facilitator Referral Content
-                </a>
-
-                <a href="{{ route('tgg-india.admin.showcases.spouse-referral.edit') }}#freelance-opportunities"
-                    class="d-block py-1">
-                    <i class="fas fa-user-friends me-2"></i> Spouse Referral Content
-                </a>
-
-                <a href="{{ route('tgg-india.admin.showcases.freelancer-referral.edit') }}#freelance-opportunities"
-                    class="d-block py-1">
-                    <i class="fas fa-user-friends me-2"></i> Freelancer Referral Content
-                </a> --}}
-
+    <!-- PROFILE -->
+    <div class="profile-section">
+        <div class="bg-color">
+            <div class="avatar-container">
+                <img src="{{ asset('assets/tgg-india/images/svg-viewer.svg') }}" class="profile-avatar">
             </div>
         </div>
-        <!-- END REFERRAL PROGRAM -->
-        <!-- ========================= -->
 
+        <div class="profile-card">
+            <h3 class="profile-name">{{ Auth::user()->name ?? 'Admin' }}</h3>
+            <p class="profile-role">Role <span>Admin</span></p>
+            <p class="profile-id">RHM No: <span>{{ Auth::user()->rhm_number ?? 'N/A' }}</span></p>
+        </div>
+    </div>
 
-        <!-- ========================= -->
-        <!--   ONBOARDING LINKS DROPDOWN  -->
-        <!-- ========================= -->
-        <div class="dropdown">
-            <a href="#"
-            class="dropdown-toggle d-flex justify-content-between align-items-center py-1"
-            data-bs-toggle="collapse"
-            data-bs-target="#onboardingDropdown">
-            
-                <span>
-                    <i class="fas fa-user-plus me-2"></i> Onboarding Links
-                </span>
-                <i class="fas fa-caret-down"></i>
+    <ul class="nav-menu">
+
+        <!-- Dashboard -->
+        <li class="nav-item {{ request()->is('tgg-meta/tgg-india/dashboard') ? 'active' : '' }}">
+            <a href="{{ route('tgg-india.admin.dashboard') }}" class="nav-link sidebar-nav-link">
+                <x-ri-dashboard-line class="icon"/>
+                <span class="nav-label">Dashboard</span>
+            </a>
+        </li>
+
+        <!-- Profile -->
+        <li class="nav-item {{ request()->is('user/profile') ? 'active' : '' }}">
+            <a href="{{ route('tgg-india.admin.profile.index') }}" class="nav-link sidebar-nav-link">
+                <x-heroicon-o-user class="icon"/>
+                <span class="nav-label">Profile</span>
+            </a>
+        </li>
+
+        <!-- Showcase -->
+        <li class="nav-item has-dropdown {{ request()->is('tgg-meta/tgg-india/admin/showcases*') ? 'is-open' : '' }}">
+            <a href="javascript:void(0)" class="nav-link sidebar-nav-link dropdown-toggle">
+                <div class="dropdown-left">
+                    <x-heroicon-o-rectangle-stack class="icon"/>
+                    <span class="nav-label">Showcase</span>
+                </div>
+                <x-heroicon-o-chevron-right class="icon chevron-icon"/>
             </a>
 
-            <div class="collapse ps-3" id="onboardingDropdown">
+            <ul class="submenu" style="{{ request()->is('tgg-meta/tgg-india/admin/showcases*') ? 'height:auto;' : '' }}">
 
-                {{-- Associate --}}
-                <a href="https://thegoldengreens.com/tgg-meta/tgg-india/onboarding/DKJSFH3489SDFLSJDFPLKLDSJFL75934RU/3"
-                target="_blank"
-                class="d-block py-1">
-                    <i class="fas fa-user-friends me-2"></i> Associate
-                </a>
+                <li><a href="{{ route('tgg-india.admin.showcases.welcome-notes.edit') }}#welcome-notes" class="submenu-link">
+                    <span class="nav-label">Welcome Notes</span></a></li>
 
-                {{-- Freelancer --}}
-                <a href="https://thegoldengreens.com/tgg-meta/tgg-india/onboarding/DKJSFH3489SDFLSJDFPLKLDSJFL75934RU/6"
-                target="_blank"
-                class="d-block py-1">
-                    <i class="fas fa-laptop-code me-2"></i> Freelancer
-                </a>
+                <li><a href="{{ route('tgg-india.admin.showcases.collaborative-projects.edit') }}#collaborative-projects" class="submenu-link">
+                    <span class="nav-label">Collaborative Projects</span></a></li>
 
-                {{-- Co Creator --}}
-                <a href="https://thegoldengreens.com/tgg-meta/tgg-india/onboarding/DKJSFH3489SDFLSJDFPLKLDSJFL75934RU/7"
-                target="_blank"
-                class="d-block py-1">
-                    <i class="fas fa-lightbulb me-2"></i> Co Creator
-                </a>
+                <li><a href="{{ route('tgg-india.admin.showcases.main-projects.edit') }}#main-projects" class="submenu-link">
+                    <span class="nav-label">Main Projects</span></a></li>
 
-                {{-- Facilitator --}}
-                <a href="https://thegoldengreens.com/tgg-meta/tgg-india/onboarding/DKJSFH3489SDFLSJDFPLKLDSJFL75934RU/8"
-                target="_blank"
-                class="d-block py-1">
-                    <i class="fas fa-chalkboard-teacher me-2"></i> Facilitator
-                </a>
+                <li><a href="{{ route('tgg-india.admin.showcases.freelance-opportunities.edit') }}#freelance-opportunities" class="submenu-link">
+                    <span class="nav-label">Freelance Opportunities</span></a></li>
 
-            </div>
-        </div>
-        <!-- END ONBOARDING LINKS -->
-        <!-- ========================= -->
+                <li><a href="{{ route('tgg-india.admin.showcases.reward.edit') }}#freelance-opportunities" class="submenu-link">
+                    <span class="nav-label">Reward Program Content</span></a></li>
 
+                <!-- Referral Program -->
+                <li class="nav-item has-dropdown">
+                    <a href="javascript:void(0)" class="submenu-link nav-link sidebar-nav-link dropdown-toggle">
+                        <span class="nav-label">Referral Program</span>
+                        <x-heroicon-o-chevron-right class="icon chevron-icon"/>
+                    </a>
 
-    </div>
-</div>
+                    <ul class="submenu">
+                        <li><a href="{{ route('tgg-india.admin.showcases.referral.edit') }}#main-projects" class="submenu-link">Admin Description</a></li>
+                        <li><a href="{{ route('tgg-india.admin.showcases.referral-link.edit',['admin']) }}" class="submenu-link">Admin Link</a></li>
+                        <li><a href="{{ route('tgg-india.admin.showcases.referral-description.edit',['associate']) }}#main-projects" class="submenu-link">Associate Description</a></li>
+                        <li><a href="#" class="submenu-link">Associate Link</a></li>
+                        <li><a href="{{ route('tgg-india.admin.showcases.referral-description.edit',['co-creator'])}}" class="submenu-link">Co-Creator Description</a></li>
+                        <li><a href="{{ route('tgg-india.admin.showcases.referral-link.edit',['co-creator']) }}" class="submenu-link">Co-Creator Link</a></li>
+                        <li><a href="{{ route('tgg-india.admin.showcases.referral-description.edit',['spouse'])}}" class="submenu-link">Spouse Description</a></li>
+                        <li><a href="{{ route('tgg-india.admin.showcases.referral-link.edit',['spouse']) }}" class="submenu-link">Spouse Link</a></li>
+                        <li><a href="{{ route('tgg-india.admin.showcases.referral-description.edit',['facilitator'])}}" class="submenu-link">Facilitator Description</a></li>
+                        <li><a href="{{ route('tgg-india.admin.showcases.referral-link.edit',['facilitator']) }}" class="submenu-link">Facilitator Link</a></li>
+                        <li><a href="{{ route('tgg-india.admin.showcases.referral-description.edit',['freelancer'])}}" class="submenu-link">Freelancer Description</a></li>
+                        <li><a href="{{ route('tgg-india.admin.showcases.referral-link.edit',['freelancer']) }}" class="submenu-link">Freelancer Link</a></li>
+                    </ul>
+                </li>
 
+                <!-- Onboarding Links -->
+                <li class="nav-item has-dropdown">
+                    <a href="javascript:void(0)" class="submenu-link nav-link sidebar-nav-link dropdown-toggle">
+                        <span class="nav-label">Onboarding Links</span>
+                        <x-heroicon-o-chevron-right class="icon chevron-icon"/>
+                    </a>
 
+                    <ul class="submenu">
+                        <li><a href="https://thegoldengreens.com/tgg-meta/tgg-india/onboarding/DKJSFH3489SDFLSJDFPLKLDSJFL75934RU/3" target="_blank" class="submenu-link">Associate</a></li>
+                        <li><a href="https://thegoldengreens.com/tgg-meta/tgg-india/onboarding/DKJSFH3489SDFLSJDFPLKLDSJFL75934RU/6" target="_blank" class="submenu-link">Freelancer</a></li>
+                        <li><a href="https://thegoldengreens.com/tgg-meta/tgg-india/onboarding/DKJSFH3489SDFLSJDFPLKLDSJFL75934RU/7" target="_blank" class="submenu-link">Co Creator</a></li>
+                        <li><a href="https://thegoldengreens.com/tgg-meta/tgg-india/onboarding/DKJSFH3489SDFLSJDFPLKLDSJFL75934RU/8" target="_blank" class="submenu-link">Facilitator</a></li>
+                    </ul>
+                </li>
 
-<a href="{{ route('tgg-india.admin.assignments.index') }}"
-    class="{{ request()->is('user/knowledge-research') ? 'active' : '' }}">
-    <i class="fas fa-clipboard-list"></i> Assignments
-</a>
+            </ul>
+        </li>
 
-<a href="{{ route('tgg-india.venture-bench-services.index',['role' => auth('web2')->user()->role_key ]) }}"
-    class="{{ request()->is('tgg-meta/tgg-india/venture-bench-services') ? 'active' : '' }}">
-    <i class="fas fa-clipboard-check"></i> Venture Bench Support
-</a>
+        <!-- Assignments -->
+        <li class="nav-item">
+            <a href="{{ route('tgg-india.admin.assignments.index') }}" class="nav-link sidebar-nav-link">
+                <x-heroicon-o-clipboard-document-list class="icon"/>
+                <span class="nav-label">Assignments</span>
+            </a>
+        </li>
 
-@php
-    $isAdvancementActive =
-        request()->is('tgg-meta/tgg-india/admin/incentives*') ||
-        request()->is('tgg-meta/tgg-india/admin/rewards*') ||
-        request()->is('tgg-meta/tgg-india/admin/donations*') ||
-        request()->is('tgg-meta/tgg-india/admin/payments*') ||
-        request()->is('tgg-meta/tgg-india/admin/invoices*') ||
-        request()->is('tgg-meta/tgg-india/admin/receipts*');
-@endphp
+        <!-- Venture -->
+        <li class="nav-item">
+            <a href="{{ route('tgg-india.venture-bench-services.index',['role' => auth('web2')->user()->role_key ]) }}" class="nav-link sidebar-nav-link">
+                <x-heroicon-o-check-badge class="icon"/>
+                <span class="nav-label">Venture Bench Support</span>
+            </a>
+        </li>
 
-<div class="dropdown">
-    <a href="#"
-        class="dropdown-toggle d-flex justify-content-between align-items-center {{ $isAdvancementActive ? 'active' : '' }}"
-        data-bs-toggle="collapse" data-bs-target="#advancementDropdown"
-        aria-expanded="{{ $isAdvancementActive ? 'true' : 'false' }}">
-        <span><i class="fas fa-arrow-up me-2"></i> Advancement</span>
-        <i class="fas fa-caret-down"></i>
-    </a>
-
-    <div class="collapse ps-3 {{ $isAdvancementActive ? 'show' : '' }}" id="advancementDropdown">
-        <a href="{{ route('tgg-india.admin.incentives.index') }}" class="d-block py-1">
-            <i class="fas fa-gift me-2"></i> Incentive
-        </a>
-        <a href="{{ route('tgg-india.admin.rewards.index') }}" class="d-block py-1">
-            <i class="fas fa-trophy me-2"></i> Reward
-        </a>
-        <a href="{{ route('tgg-india.admin.donations.index') }}" class="d-block py-1">
-            <i class="fas fa-donate me-2"></i> Donation
-        </a>
-        {{-- <a href="{{ route('tgg-india.admin.payments.index') }}" class="d-block py-1">
-            <i class="fas fa-credit-card me-2"></i> Payment
-        </a> --}}
-        <a href="{{ route('tgg-india.admin.invoices.index') }}" class="d-block py-1">
-            <i class="fas fa-file-invoice me-2"></i> Invoice
-        </a>
-        <a href="{{ route('tgg-india.admin.receipts.index') }}" class="d-block py-1">
-            <i class="fas fa-receipt me-2"></i> Receipt
-        </a>
-    </div>
-</div>
-
-<div class="dropdown">
-    <a href="#"
-        class="dropdown-toggle d-flex justify-content-between align-items-center
-        {{ request()->is('tgg-meta/tgg-india/*/templates*') ? 'active' : '' }}"
-        data-bs-toggle="collapse"
-        data-bs-target="#campaignDropdown"
-        aria-expanded="{{ request()->is('tgg-meta/tgg-india/*/templates*') ? 'true' : 'false' }}">
-        
-        <span>
-            <i class="fas fa-bullhorn me-2"></i> Campaign
-        </span>
-        <i class="fas fa-caret-down"></i>
-    </a>
-
-    <div class="collapse ps-3
-        {{ request()->is('tgg-meta/tgg-india/*/templates*') ? 'show' : '' }}"
-        id="campaignDropdown">
-
-        {{-- Templates --}}
-        <a href="{{ route('tgg-india.templates.index', 'admin') }}"
-           class="d-block py-1
-           {{ request()->is('tgg-meta/tgg-india/*/templates') ? 'active' : '' }}">
-            <i class="fas fa-envelope-open-text me-2"></i> Templates
-        </a>
-
-        {{-- Future (campaigns, logs, reports) --}}
-        
-        <a href="{{ route('tgg-india.campaigns.index', 'admin') }}"
-            class="d-block py-1
-            {{ request()->is('tgg-meta/tgg-india/*/campaigns*') ? 'active' : '' }}">
-                <i class="fas fa-paper-plane me-2"></i> Campaigns
-        </a>
-       
-        <a href="{{ route('tgg-india.email-check.index', 'admin') }}"
-        class="d-block py-1
-        {{ request()->is('tgg-meta/tgg-india/*/email-check*') ? 'active' : '' }}">
-            <i class="fas fa-envelope-circle-check me-2"></i> Email Check
-        </a>
-
-
-    </div>
-</div>
-
-
-<div class="dropdown">
-    <a href="#sitemaplink" class="dropdown-toggle d-flex justify-content-between align-items-center"
-        data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sitemaplink">
-        <span><i class="fas fa-sitemap me-2"></i>Links (Sitemap)</span>
-        <i class="fas fa-caret-down"></i>
-    </a>
-    <div class="collapse ps-3 {{ request()->is('user/login') || request()->is('uses/researcher') ? 'show' : '' }}"
-        id="sitemaplink">
-        <a href="{{ route('tgg-india.show') }}" class="d-block py-1" target="_blank" rel="noopener noreferrer">
-            <i class="fas fa-sign-in-alt me-2"></i> Login
-        </a>
-        <a href="{{ url('tgg-meta/tgg-india/register/trainer/DSLKFN43KREFWLDCMXKLWNEMR34RKL32NWMEDKQWJASNCKNRWDECNK3EW') }}"
-            class="d-block py-1" target="_blank" rel="noopener noreferrer">
-            <i class="fas fa-user-edit me-2"></i> Trainer Register
-        </a>
-        <a href="{{ url('tgg-meta/tgg-india/register/associate/DSLKFN43KREFWLDCMXKLWNEMR34RKL32NWMEDKQWJASNCKNRWDECNK3EW') }}"
-            class="d-block py-1" target="_blank" rel="noopener noreferrer">
-            <i class="fas fa-user-friends me-2"></i> Associates Register
-        </a>
+        <!-- Advancement -->
         @php
-            $referralCode = Auth('web2')->user()->referral_code;
-            $referralLink = url('tgg-meta/tgg-india/register/referral/' . $referralCode);
+            $isAdvancementActive =
+                request()->is('tgg-meta/tgg-india/admin/incentives*') ||
+                request()->is('tgg-meta/tgg-india/admin/rewards*') ||
+                request()->is('tgg-meta/tgg-india/admin/donations*') ||
+                request()->is('tgg-meta/tgg-india/admin/payments*') ||
+                request()->is('tgg-meta/tgg-india/admin/invoices*') ||
+                request()->is('tgg-meta/tgg-india/admin/receipts*');
         @endphp
 
-        {{-- <a href="{{ $referralLink }}" class="d-block py-1" target="_blank" rel="noopener noreferrer">
-            <i class="fas fa-user-friends me-2"></i> Associates Register - By Referral
-        </a> --}}
+        <li class="nav-item has-dropdown {{ $isAdvancementActive ? 'is-open' : '' }}">
+            <a href="javascript:void(0)" class="nav-link sidebar-nav-link dropdown-toggle">
+                <div class="dropdown-left">
+                    <x-heroicon-o-arrow-trending-up class="icon"/>
+                    <span class="nav-label">Advancement</span>
+                </div>
+                <x-heroicon-o-chevron-right class="icon chevron-icon"/>
+            </a>
 
-        <a href="{{ url('tgg-meta/tgg-india/register/rhm-club/DSLKFN43KREFWLDCMXKLWNEMR34RKL32NWMEDKQWJASNCKNRWDECNK3EW') }}"
-            class="d-block py-1" target="_blank" rel="noopener noreferrer">
-            <i class="fas fa-user-friends me-2"></i> Rhm Club Register
-        </a>
+            <ul class="submenu" style="{{ $isAdvancementActive ? 'height:auto;' : '' }}">
+                <li><a href="{{ route('tgg-india.admin.incentives.index') }}" class="submenu-link">Incentive</a></li>
+                <li><a href="{{ route('tgg-india.admin.rewards.index') }}" class="submenu-link">Reward</a></li>
+                <li><a href="{{ route('tgg-india.admin.donations.index') }}" class="submenu-link">Donation</a></li>
+                <li><a href="{{ route('tgg-india.admin.invoices.index') }}" class="submenu-link">Invoice</a></li>
+                <li><a href="{{ route('tgg-india.admin.receipts.index') }}" class="submenu-link">Receipt</a></li>
+            </ul>
+        </li>
 
-        <a href="{{ url('tgg-meta/tgg-india/register/co-creator/DSLKFN43KREFWLDCMXKLWNEMR34RKL32NWMEDKQWJASNCKNRWDECNK3EW') }}"
-            class="d-block py-1" target="_blank" rel="noopener noreferrer">
-            <i class="fas fa-user-friends me-2"></i>Co-Creator Register
-        </a>
+        <!-- Campaign -->
+        <li class="nav-item has-dropdown {{ request()->is('tgg-meta/tgg-india/*/templates*') ? 'is-open' : '' }}">
+            <a href="javascript:void(0)" class="nav-link sidebar-nav-link dropdown-toggle">
+                <div class="dropdown-left">
+                    <x-heroicon-o-megaphone class="icon"/>
+                    <span class="nav-label">Campaign</span>
+                </div>
+                <x-heroicon-o-chevron-right class="icon chevron-icon"/>
+            </a>
 
-        <a href="{{ url('tgg-meta/tgg-india/register/facilitator/DSLKFN43KREFWLDCMXKLWNEMR34RKL32NWMEDKQWJASNCKNRWDECNK3EW') }}"
-            class="d-block py-1" target="_blank" rel="noopener noreferrer">
-            <i class="fas fa-user-friends me-2"></i> Facilitator Register
-        </a>
+            <ul class="submenu" style="{{ request()->is('tgg-meta/tgg-india/*/templates*') ? 'height:auto;' : '' }}">
+                <li><a href="{{ route('tgg-india.templates.index', 'admin') }}" class="submenu-link">Templates</a></li>
+                <li><a href="{{ route('tgg-india.campaigns.index', 'admin') }}" class="submenu-link">Campaigns</a></li>
+                <li><a href="{{ route('tgg-india.email-check.index', 'admin') }}" class="submenu-link">Email Check</a></li>
+            </ul>
+        </li>
 
-        <a href="{{ url('tgg-meta/tgg-india/register/freelancer/DSLKFN43KREFWLDCMXKLWNEMR34RKL32NWMEDKQWJASNCKNRWDECNK3EW') }}"
-            class="d-block py-1" target="_blank" rel="noopener noreferrer">
-            <i class="fas fa-user-friends me-2"></i> Freelancers Register
-        </a>
+        <!-- Sitemap Links -->
+        <li class="nav-item has-dropdown">
+            <a href="javascript:void(0)" class="nav-link sidebar-nav-link dropdown-toggle">
+                <div class="dropdown-left">
+                    <x-ri-map-line class="icon" />
+                    <span class="nav-label">Links (Sitemap)</span>
+                </div>
+                <x-heroicon-o-chevron-right class="icon chevron-icon"/>
+            </a>
 
-        <a href="{{ url('tgg-meta/tgg-india/register/spouse/DSLKFN43KREFWLDCMXKLWNEMR34RKL32NWMEDKQWJASNCKNRWDECNK3EW') }}"
-            class="d-block py-1" target="_blank" rel="noopener noreferrer">
-            <i class="fas fa-user-friends me-2"></i> Spouse Register
-        </a>
+            <ul class="submenu">
+                <li><a href="{{ route('tgg-india.show') }}" class="submenu-link" target="_blank">Login</a></li>
+                <li><a href="{{ url('tgg-meta/tgg-india/register/trainer/DSLKFN43KREFWLDCMXKLWNEMR34RKL32NWMEDKQWJASNCKNRWDECNK3EW') }}" class="submenu-link" target="_blank">Trainer Register</a></li>
+                <li><a href="{{ url('tgg-meta/tgg-india/register/associate/DSLKFN43KREFWLDCMXKLWNEMR34RKL32NWMEDKQWJASNCKNRWDECNK3EW') }}" class="submenu-link" target="_blank">Associates Register</a></li>
+                <li><a href="{{ url('tgg-meta/tgg-india/register/rhm-club/DSLKFN43KREFWLDCMXKLWNEMR34RKL32NWMEDKQWJASNCKNRWDECNK3EW') }}" class="submenu-link" target="_blank">Rhm Club Register</a></li>
+                <li><a href="{{ url('tgg-meta/tgg-india/register/co-creator/DSLKFN43KREFWLDCMXKLWNEMR34RKL32NWMEDKQWJASNCKNRWDECNK3EW') }}" class="submenu-link" target="_blank">Co-Creator Register</a></li>
+                <li><a href="{{ url('tgg-meta/tgg-india/register/facilitator/DSLKFN43KREFWLDCMXKLWNEMR34RKL32NWMEDKQWJASNCKNRWDECNK3EW') }}" class="submenu-link" target="_blank">Facilitator Register</a></li>
+                <li><a href="{{ url('tgg-meta/tgg-india/register/freelancer/DSLKFN43KREFWLDCMXKLWNEMR34RKL32NWMEDKQWJASNCKNRWDECNK3EW') }}" class="submenu-link" target="_blank">Freelancers Register</a></li>
+                <li><a href="{{ url('tgg-meta/tgg-india/register/spouse/DSLKFN43KREFWLDCMXKLWNEMR34RKL32NWMEDKQWJASNCKNRWDECNK3EW') }}" class="submenu-link" target="_blank">Spouse Register</a></li>
+                <li><a href="{{ url('https://www.modicare.com/sign-in') }}" class="submenu-link" target="_blank">Modicare Register</a></li>
+                <li><a href="{{ url('https://invest.motilaloswal.com/') }}" class="submenu-link" target="_blank">Motilaloswal Register</a></li>
+                <li><a href="{{ url('https://pos.insureeasy.in/') }}" class="submenu-link" target="_blank">India Insure Register</a></li>
+                <li><a href="{{ url('user/login/') }}" class="submenu-link" target="_blank">TGG Foundation</a></li>
+            </ul>
+        </li>
 
-        <a href="{{ url('https://www.modicare.com/sign-in') }}" class="d-block py-1" target="_blank"
-            rel="noopener noreferrer">
-            <i class="fas fa-user-friends me-2"></i> Modicare Register
-        </a>
+        <!-- Modules -->
+        <li class="nav-item">
+            <a href="{{ route('tgg-india.admin.modules.index') }}" class="nav-link sidebar-nav-link">
+                <x-heroicon-o-cube class="icon"/>
+                <span class="nav-label">Modules</span>
+            </a>
+        </li>
 
-        <a href="{{ url('https://invest.motilaloswal.com/') }}" class="d-block py-1" target="_blank"
-            rel="noopener noreferrer">
-            <i class="fas fa-user-friends me-2"></i> Motilaloswal Register
-        </a>
+        <!-- Feature Limits -->
+        <li class="nav-item">
+            <a href="{{ route('tgg-india.admin.feature-limits.index') }}" class="nav-link sidebar-nav-link">
+                <x-heroicon-o-adjustments-horizontal class="icon"/>
+                <span class="nav-label">Feature Limits</span>
+            </a>
+        </li>
 
-        <a href="{{ url('https://pos.insureeasy.in/') }}" class="d-block py-1" target="_blank"
-            rel="noopener noreferrer">
-            <i class="fas fa-user-friends me-2"></i>  India Insure Register
-        </a>
+        <!-- Applications -->
+        <li class="nav-item has-dropdown {{ request()->is('user/new-applications*') || request()->is('user/processed-applications*') ? 'is-open' : '' }}">
+            <a href="javascript:void(0)" class="nav-link sidebar-nav-link dropdown-toggle">
+                <div class="dropdown-left">
+                    <x-heroicon-o-document-text class="icon"/>
+                    <span class="nav-label">Applications</span>
+                </div>
+                <x-heroicon-o-chevron-right class="icon chevron-icon"/>
+            </a>
 
-        <a href="{{ url('user/login/') }}" class="d-block py-1" target="_blank"
-            rel="noopener noreferrer">
-            <i class="fas fa-user-friends me-2"></i>  TGG Foundation
+            <ul class="submenu" style="{{ request()->is('user/new-applications*') || request()->is('user/processed-applications*') ? 'height:auto;' : '' }}">
+                <li><a href="{{ route('tgg-india.admin.new-applications') }}" class="submenu-link">New Applications</a></li>
+                <li><a href="{{ route('tgg-india.admin.processed-applications') }}" class="submenu-link">Processed Applications</a></li>
+            </ul>
+        </li>
+
+        <!-- Referral -->
+        <li class="nav-item has-dropdown {{ request()->is('tgg-meta/tgg-india/admin/referral-program*') || request()->is('tgg-meta/tgg-india/admin/referral-tracking*') || request()->is('tgg-meta/tgg-india/admin/enquiry/referral/tracking*') ? 'is-open' : '' }}">
+            <a href="javascript:void(0)" class="nav-link sidebar-nav-link dropdown-toggle">
+                <div class="dropdown-left">
+                    <x-heroicon-o-share class="icon"/>
+                    <span class="nav-label">Referral</span>
+                </div>
+                <x-heroicon-o-chevron-right class="icon chevron-icon"/>
+            </a>
+
+            <ul class="submenu" style="{{ request()->is('tgg-meta/tgg-india/admin/referral-program*') || request()->is('tgg-meta/tgg-india/admin/referral-tracking*') || request()->is('tgg-meta/tgg-india/admin/enquiry/referral/tracking*') ? 'height:auto;' : '' }}">
+                <li><a href="{{ route('tgg-india.admin.referral.program') }}" class="submenu-link">Referral Program</a></li>
+                <li><a href="{{ route('tgg-india.admin.referral.tracking') }}" class="submenu-link">Referral Tracking</a></li>
+                <li><a href="{{ route('tgg-india.admin.enquiry.referral.tracking') }}" class="submenu-link">Lead Generated Tracking</a></li>
+            </ul>
+        </li>
+
+        <!-- FAQ Management -->
+        <li class="nav-item has-dropdown {{ request()->is('tgg-india/admin/faq*') ? 'is-open' : '' }}">
+            <a href="javascript:void(0)" class="nav-link sidebar-nav-link dropdown-toggle">
+                <div class="dropdown-left">
+                    <x-heroicon-o-question-mark-circle class="icon"/>
+                    <span class="nav-label">FAQ Management</span>
+                </div>
+                <x-heroicon-o-chevron-right class="icon chevron-icon"/>
+            </a>
+
+            <ul class="submenu" style="{{ request()->is('tgg-india/admin/faq*') ? 'height:auto;' : '' }}">
+                <li><a href="{{ route('tgg-india.admin.faq-categories.index') }}" class="submenu-link">Categories</a></li>
+                <li><a href="{{ route('tgg-india.admin.faqs.index') }}" class="submenu-link">All FAQs</a></li>
+            </ul>
+        </li>
+
+        <!-- Report Builder -->
+        <li class="nav-item">
+            <a href="{{ route('tgg-india.report-builder') }}" class="nav-link sidebar-nav-link">
+                <x-heroicon-o-chart-bar class="icon"/>
+                <span class="nav-label">Report Builder</span>
+            </a>
+        </li>
+
+        <!-- Settings -->
+        <li class="nav-item">
+            <a href="{{ route('tgg-india.admin.settings.index') }}" class="nav-link sidebar-nav-link">
+                <x-heroicon-o-cog-6-tooth class="icon"/>
+                <span class="nav-label">Settings</span>
+            </a>
+        </li>
+
+    </ul>
+
+    <!-- LOGOUT -->
+    <div class="logout-section">
+        <a href="{{ route('tgg-india.logout') }}" class="logout-btn">
+            <x-heroicon-o-arrow-right-on-rectangle class="logout-icon"/>
+            <span class="nav-label">Log out</span>
         </a>
     </div>
-</div>
 
-<a href="{{ route('tgg-india.admin.modules.index') }}"
-    class="{{ request()->is('tgg-india/admin/modules*') ? 'active' : '' }}">
-    <i class="fas fa-cubes"></i> Modules
-</a>
-
-<a href="{{ route('tgg-india.admin.feature-limits.index') }}"
-    class="{{ request()->is('tgg-india/admin/feature-limits*') ? 'active' : '' }}">
-    <i class="fas fa-sliders-h"></i> Feature Limits
-</a>
-
-
-
-<div class="dropdown">
-    <a href="#"
-        class="dropdown-toggle d-flex justify-content-between align-items-center {{ request()->is('user/new-applications*') || request()->is('user/processed-applications*') ? 'active' : '' }}"
-        data-bs-toggle="collapse" data-bs-target="#applicationDropdown"
-        aria-expanded="{{ request()->is('user/new-applications*') || request()->is('user/processed-applications*') ? 'true' : 'false' }}">
-        <span><i class="fas fa-file-alt me-2"></i> Applications</span>
-        <i class="fas fa-caret-down"></i>
-    </a>
-    <div class="collapse ps-3 {{ request()->is('user/new-applications*') || request()->is('user/processed-applications*') ? 'show' : '' }}"
-        id="applicationDropdown">
-        <a href="{{ route('tgg-india.admin.new-applications') }}" class="d-block py-1">
-            <i class="fas fa-user-plus me-2"></i> New Applications
-        </a>
-        <a href="{{ route('tgg-india.admin.processed-applications') }}" class="d-block py-1">
-            <i class="fas fa-check-circle me-2"></i> Processed Applications
-        </a>
-    </div>
-</div>
-
-<div class="dropdown">
-    <a href="#referrallink" class="dropdown-toggle d-flex justify-content-between align-items-center"
-        data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="referrallink">
-        <span><i class="fas fa-share-alt me-2"></i>Referral</span>
-        <i class="fas fa-caret-down"></i>
-    </a>
-
-    <div class="collapse ps-3 {{ request()->is('tgg-meta/tgg-india/admin/referral-program*') || request()->is('tgg-meta/tgg-india/admin/referral-tracking*') || request()->is('tgg-meta/tgg-india/admin/enquiry/referral/tracking*') ? 'show' : '' }}"
-        id="referrallink">
-
-        <a href="{{ route('tgg-india.admin.referral.program') }}" class="d-block py-1">
-            <i class="fas fa-project-diagram me-2"></i>Referral Program
-        </a>
-
-        <a href="{{ route('tgg-india.admin.referral.tracking') }}" class="d-block py-1">
-            <i class="fas fa-chart-line me-2"></i>Referral Tracking
-        </a>
-
-        <a href="{{ route('tgg-india.admin.enquiry.referral.tracking') }}"
-            class="d-block py-1 {{ request()->is('tgg-india/admin/enquiry/referral/tracking*') ? 'active' : '' }}">
-            <i class="fas fa-bullseye me-2"></i>Lead Generated Tracking
-        </a>
-    </div>
-</div>
-
-<div class="dropdown">
-
-    <a href="#"
-        class="dropdown-toggle d-flex justify-content-between align-items-center 
-        {{ request()->is('tgg-india/admin/faq*') ? 'active' : '' }}"
-        data-bs-toggle="collapse"
-        data-bs-target="#faqDropdown"
-        aria-expanded="{{ request()->is('tgg-india/admin/faq*') ? 'true' : 'false' }}">
-
-        <span>
-            <i class="fas fa-question-circle me-2"></i> FAQ Management
-        </span>
-
-        <i class="fas fa-caret-down"></i>
-    </a>
-
-    <div class="collapse ps-3 
-        {{ request()->is('tgg-meta/tgg-india/admin/faq*') ? 'show' : '' }}"
-        id="faqDropdown">
-
-        <!-- FAQ Categories -->
-        <a href="{{ route('tgg-india.admin.faq-categories.index') }}"
-           class="d-block py-1 
-           {{ request()->is('tgg-meta/tgg-india/admin/faq-categories*') ? 'active' : '' }}">
-            <i class="fas fa-folder me-2"></i> Categories
-        </a>
-
-        <!-- FAQs -->
-        <a href="{{ route('tgg-india.admin.faqs.index') }}"
-           class="d-block py-1 
-           {{ request()->is('tgg-meta/tgg-india/admin/faqs*') ? 'active' : '' }}">
-            <i class="fas fa-circle-question me-2"></i> All FAQs
-        </a>
-
-    </div>
-
-</div>
-
-
-<a href="{{ route('tgg-india.report-builder') }}"
-    class="{{ request()->is('tgg-meta/tgg-india/report-builder') ? 'active' : '' }}">
-    <i class="fas fa-chart-bar"></i> Report Builder
-</a>
-
-<a href="{{ route('tgg-india.admin.settings.index') }}"
-   class="{{ request()->is('tgg-meta/tgg-india/settings*') ? 'active' : '' }}">
-    <i class="fas fa-cog"></i> Settings
-</a>
-
-
-<a href="{{ route('tgg-india.logout') }}"><i class="fas fa-sign-out-alt"></i> Log out</a>
-
-
+</aside>

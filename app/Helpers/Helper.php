@@ -313,91 +313,228 @@ if (!function_exists('appraisal_plan')) {
 
 
 
+// function getVentureBenchSupportDashbaordData(){
+  
+//         return   $services = [
+//                 [
+//                     'title' => 'Website Development',
+//                     'icon' => 'bi-code-slash',
+//                     'logo' => 'images/services/web-development.svg',
+//                     'points' => ['Static & dynamic websites', 'Responsive & SEO friendly', 'Secure and scalable build'],
+//                     'bg' => '#EFF6FF',
+//                     'color' => '#155DFC',
+//                 ],
+//                 [
+//                     'title' => 'Digital Marketing',
+//                     'icon' => 'bi-megaphone',
+//                     'logo' => 'images/services/digital-marketing.svg',
+//                     'points' => ['SEO & social media campaigns', 'Content & brand promotion', 'Analytics & reporting'],
+//                     'bg' => '#FDF2F8',
+//                     'color' => '#E60076',
+//                 ],
+//                 [
+//                     'title' => 'TGG News',
+//                     'icon' => 'bi-broadcast',
+//                     'logo' => 'images/services/news.svg',
+//                     'points' => ['AI podcast & video promotion', 'Monthly media exposure', 'Community outreach'],
+//                     'bg' => '#DBEAFE',
+//                     'color' => '#033576',
+//                 ],
+//                 [
+//                     'title' => 'Business Development Support',
+//                     'icon' => 'bi-briefcase',
+//                     'logo' => 'images/services/business.svg',
+//                     'points' => ['Market strategy planning', 'Growth & partnerships', 'Operational consulting'],
+//                     'bg' => '#F3E5F5',
+//                     'color' => '#8E24AA',
+//                 ],
+//                 [
+//                     'title' => 'Incorporation Support',
+//                     'icon' => 'bi-building',
+//                     'logo' => 'images/services/incorporation.svg',
+//                     'points' => ['Company registration', 'Compliance assistance', 'Location-based guidance'],
+//                     'bg' => '#E0F7FA',
+//                     'color' => '#00ACC1',
+//                 ],
+//                 [
+//                     'title' => 'Accounting & Auditing Support',
+//                     'icon' => 'bi-calculator',
+//                     'logo' => 'images/services/accounting.svg',
+//                     'points' => ['Bookkeeping & audits', 'Financial compliance', 'Reporting & review'],
+//                     'bg' => '#FFFDE7',
+//                     'color' => '#FBC02D',
+//                 ],
+//                 [
+//                     'title' => 'Legal Support',
+//                     'icon' => 'bi-shield-check',
+//                     'logo' => 'images/services/legal.svg',
+//                     'points' => ['Legal documentation', 'Contracts & policies', 'Regulatory guidance'],
+//                     'bg' => '#FFEBEE',
+//                     'color' => '#E53935',
+//                 ],
+//                 [
+//                     'title' => 'AI Powered Problem Solving',
+//                     'icon' => 'bi-cpu',
+//                     'logo' => 'images/services/ai.svg',
+//                     'points' => ['Instant AI-based solutions', 'Decision support', 'Knowledge assistance'],
+//                     'bg' => '#EDE7F6',
+//                     'color' => '#5E35B1',
+//                 ],
+//                 [
+//                     'title' => 'App Development',
+//                     'icon' => 'bi-phone',
+//                     'logo' => 'images/services/app.svg',
+//                     'points' => ['Android & iOS apps', 'User-friendly UI/UX', 'Performance optimized'],
+//                     'bg' => '#E1F5FE',
+//                     'color' => '#039BE5',
+//                 ],
+//                 [
+//                     'title' => 'Custom Software',
+//                     'icon' => 'bi-gear',
+//                     'logo' => 'images/services/software.svg',
+//                     'points' => ['Tailor-made solutions', 'Process automation', 'Secure & scalable systems'],
+//                     'bg' => '#FBE9E7',
+//                     'color' => '#F4511E',
+//                 ],
+//                 // ✅ New Service 1
+//                 [
+//                     'title' => 'Travel Services',
+//                     'icon' => 'bi-airplane',
+//                     'logo' => 'images/services/travel.svg',
+//                     'points' => [
+//                         'Domestic & international bookings',
+//                         'Corporate travel management',
+//                         'Visa & travel assistance'
+//                     ],
+//                     'bg' => '#E0F2F1',
+//                     'color' => '#00897B',
+//                 ],
+
+//                 // ✅ New Service 2
+//                 [
+//                     'title' => 'Loyalty Program',
+//                     'icon' => 'bi-gift',
+//                     'logo' => 'images/services/loyalty.svg',
+//                     'points' => [
+//                         'Reward & referral programs',
+//                         'Customer engagement strategies',
+//                         'Point-based incentive systems'
+//                     ],
+//                     'bg' => '#FCE4EC',
+//                     'color' => '#D81B60',
+//                 ],
+//             ];
+// }
+
 function getVentureBenchSupportDashbaordData(){
   
-        return   $services = [
-                [
-                    'title' => 'Website Development',
-                    'icon' => 'bi-code-slash',
-                    'logo' => 'images/services/web-development.svg',
-                    'points' => ['Static & dynamic websites', 'Responsive & SEO friendly', 'Secure and scalable build'],
-                ],
-                [
-                    'title' => 'Digital Marketing',
-                    'icon' => 'bi-megaphone',
-                    'logo' => 'images/services/digital-marketing.svg',
-                    'points' => ['SEO & social media campaigns', 'Content & brand promotion', 'Analytics & reporting'],
-                ],
-                [
-                    'title' => 'TGG News',
-                    'icon' => 'bi-broadcast',
-                    'logo' => 'images/services/news.svg',
-                    'points' => ['AI podcast & video promotion', 'Monthly media exposure', 'Community outreach'],
-                ],
-                [
-                    'title' => 'Business Development Support',
-                    'icon' => 'bi-briefcase',
-                    'logo' => 'images/services/business.svg',
-                    'points' => ['Market strategy planning', 'Growth & partnerships', 'Operational consulting'],
-                ],
-                [
-                    'title' => 'Incorporation Support',
-                    'icon' => 'bi-building',
-                    'logo' => 'images/services/incorporation.svg',
-                    'points' => ['Company registration', 'Compliance assistance', 'Location-based guidance'],
-                ],
-                [
-                    'title' => 'Accounting & Auditing Support',
-                    'icon' => 'bi-calculator',
-                    'logo' => 'images/services/accounting.svg',
-                    'points' => ['Bookkeeping & audits', 'Financial compliance', 'Reporting & review'],
-                ],
-                [
-                    'title' => 'Legal Support',
-                    'icon' => 'bi-shield-check',
-                    'logo' => 'images/services/legal.svg',
-                    'points' => ['Legal documentation', 'Contracts & policies', 'Regulatory guidance'],
-                ],
-                [
-                    'title' => 'AI Powered Problem Solving',
-                    'icon' => 'bi-cpu',
-                    'logo' => 'images/services/ai.svg',
-                    'points' => ['Instant AI-based solutions', 'Decision support', 'Knowledge assistance'],
-                ],
-                [
-                    'title' => 'App Development',
-                    'icon' => 'bi-phone',
-                    'logo' => 'images/services/app.svg',
-                    'points' => ['Android & iOS apps', 'User-friendly UI/UX', 'Performance optimized'],
-                ],
-                [
-                    'title' => 'Custom Software',
-                    'icon' => 'bi-gear',
-                    'logo' => 'images/services/software.svg',
-                    'points' => ['Tailor-made solutions', 'Process automation', 'Secure & scalable systems'],
-                ],
-                // ✅ New Service 1
-                [
-                    'title' => 'Travel Services',
-                    'icon' => 'bi-airplane',
-                    'logo' => 'images/services/travel.svg',
-                    'points' => [
-                        'Domestic & international bookings',
-                        'Corporate travel management',
-                        'Visa & travel assistance'
-                    ],
-                ],
+    return $services = [
+        [
+            'title' => 'Website Development',
+            'icon' => 'ri-code-line', // Replaced bi-code-slash
+            'logo' => 'images/services/web-development.svg',
+            'points' => ['Static & dynamic websites', 'Responsive & SEO friendly', 'Secure and scalable build'],
+            'bg' => '#EFF6FF',
+            'color' => '#155DFC',
+        ],
+        [
+            'title' => 'Digital Marketing',
+            'icon' => 'ri-megaphone-line', // Replaced bi-megaphone
+            'logo' => 'images/services/digital-marketing.svg',
+            'points' => ['SEO & social media campaigns', 'Content & brand promotion', 'Analytics & reporting'],
+            'bg' => '#FDF2F8',
+            'color' => '#E60076',
+        ],
+        [
+            'title' => 'TGG News',
+            'icon' => 'ri-broadcast-line', // Replaced bi-broadcast
+            'logo' => 'images/services/news.svg',
+            'points' => ['AI podcast & video promotion', 'Monthly media exposure', 'Community outreach'],
+            'bg' => '#DBEAFE',
+            'color' => '#033576',
+        ],
+        [
+            'title' => 'Business Development Support',
+            'icon' => 'ri-briefcase-line', // Replaced bi-briefcase
+            'logo' => 'images/services/business.svg',
+            'points' => ['Market strategy planning', 'Growth & partnerships', 'Operational consulting'],
+            'bg' => '#F3E5F5',
+            'color' => '#8E24AA',
+        ],
+        [
+            'title' => 'Incorporation Support',
+            'icon' => 'ri-building-line', // Replaced bi-building
+            'logo' => 'images/services/incorporation.svg',
+            'points' => ['Company registration', 'Compliance assistance', 'Location-based guidance'],
+            'bg' => '#E0F7FA',
+            'color' => '#00ACC1',
+        ],
+        [
+            'title' => 'Accounting & Auditing Support',
+            'icon' => 'ri-calculator-line', // Replaced bi-calculator
+            'logo' => 'images/services/accounting.svg',
+            'points' => ['Bookkeeping & audits', 'Financial compliance', 'Reporting & review'],
+            'bg' => '#FFFDE7',
+            'color' => '#FBC02D',
+        ],
+        [
+            'title' => 'Legal Support',
+            'icon' => 'ri-shield-check-line', // Replaced bi-shield-check
+            'logo' => 'images/services/legal.svg',
+            'points' => ['Legal documentation', 'Contracts & policies', 'Regulatory guidance'],
+            'bg' => '#FFEBEE',
+            'color' => '#E53935',
+        ],
+        [
+            'title' => 'AI Powered Problem Solving',
+            'icon' => 'ri-cpu-line', // Replaced bi-cpu
+            'logo' => 'images/services/ai.svg',
+            'points' => ['Instant AI-based solutions', 'Decision support', 'Knowledge assistance'],
+            'bg' => '#EDE7F6',
+            'color' => '#5E35B1',
+        ],
+        [
+            'title' => 'App Development',
+            'icon' => 'ri-smartphone-line', // Replaced bi-phone
+            'logo' => 'images/services/app.svg',
+            'points' => ['Android & iOS apps', 'User-friendly UI/UX', 'Performance optimized'],
+            'bg' => '#E1F5FE',
+            'color' => '#039BE5',
+        ],
+        [
+            'title' => 'Custom Software',
+            'icon' => 'ri-settings-line', // Replaced bi-gear
+            'logo' => 'images/services/software.svg',
+            'points' => ['Tailor-made solutions', 'Process automation', 'Secure & scalable systems'],
+            'bg' => '#FBE9E7',
+            'color' => '#F4511E',
+        ],
+        // ✅ New Service 1
+        [
+            'title' => 'Travel Services',
+            'icon' => 'ri-flight-takeoff-line', // Replaced bi-airplane
+            'logo' => 'images/services/travel.svg',
+            'points' => [
+                'Domestic & international bookings',
+                'Corporate travel management',
+                'Visa & travel assistance'
+            ],
+            'bg' => '#E0F2F1',
+            'color' => '#00897B',
+        ],
 
-                // ✅ New Service 2
-                [
-                    'title' => 'Loyalty Program',
-                    'icon' => 'bi-gift',
-                    'logo' => 'images/services/loyalty.svg',
-                    'points' => [
-                        'Reward & referral programs',
-                        'Customer engagement strategies',
-                        'Point-based incentive systems'
-                    ],
-                ],
-            ];
+        // ✅ New Service 2
+        [
+            'title' => 'Loyalty Program',
+            'icon' => 'ri-gift-line', // Replaced bi-gift
+            'logo' => 'images/services/loyalty.svg',
+            'points' => [
+                'Reward & referral programs',
+                'Customer engagement strategies',
+                'Point-based incentive systems'
+            ],
+            'bg' => '#FCE4EC',
+            'color' => '#D81B60',
+        ],
+    ];
 }

@@ -4,7 +4,7 @@ use App\Http\Controllers\User\ResearchAssistanceController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CkeditorUploadController;
 use App\Http\Controllers\LinkedinSearchController;
-use UniSharp\LaravelFilemanager\Lfm;
+// use UniSharp\LaravelFilemanager\Lfm;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Xguard\Kanban\Models\Board;
@@ -14,6 +14,7 @@ use App\Http\Controllers\ExportController;
 use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Hash;
 use App\Models\UserSecondary;
+use App\Models\User;
 
 // Route::get('sheet/upload', [DataController::class, 'showUploadForm'])->name('sheet.upload.form');
 // Route::post('sheet/upload', [DataController::class, 'upload'])->name('sheet.upload');
@@ -49,24 +50,59 @@ Route::get('/invoices/generate-all-numbers', function () {
 
 
 
-Route::get('/change-password-test', function () {
+// Route::get('/change-password-test', function () {
 
-    $user = UserSecondary::where('email', 'info.devfox@gmail.com')->first();
+//     $user = UserSecondary::where('email', 'info.devfox@gmail.com')->first();
+
+//     if (!$user) {
+//         return 'User not found';
+//     }
+
+//     $user->password = Hash::make('123456');
+//     $user->save();
+
+//     return 'Password changed successfully';
+// });
+
+
+Route::get('/change-password-test', function () {
+    
+    // 1. Find the user in the DEFAULT database (tgg_edge_new)
+    $user = User::where('email', 'spouse@gmail.com')->first();
 
     if (!$user) {
-        return 'User not found';
+        return 'User not found in tgg_edge_new!';
     }
 
+    // 2. Change the password 
+    // (Using Hash::make just to be 100% safe in case the primary User model doesn't have the 'hashed' cast)
     $user->password = Hash::make('123456');
     $user->save();
 
-    return 'Password changed successfully';
+    return 'Success! Password changed to 123456 for ' . $user->email;
 });
-
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
+
+// Route::get('/check-db', function () {
+//     try {
+//         $primary = \Illuminate\Support\Facades\DB::connection()->getDatabaseName();
+//         $secondary = \Illuminate\Support\Facades\DB::connection('mysql2')->getDatabaseName();
+        
+//         return "
+//             <h3>Database Connection Status:</h3>
+//             <b>Primary (web):</b> Connected to -> $primary <br>
+//             <b>Secondary (web2):</b> Connected to -> $secondary
+//         ";
+//     } catch (\Exception $e) {
+//         return "Database Connection Failed: " . $e->getMessage();
+//     }
+// });
 
 Route::middleware('web')->get('/researcher/kanban', function () {
 
@@ -122,9 +158,9 @@ Route::post('/ckeditor/upload', [\App\Http\Controllers\UploadController::class, 
 
 Route::get('search/undergrad-researchers', [LinkedinSearchController::class, 'search']);
 
-Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
-    Lfm::routes();
-});
+// Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+//     Lfm::routes();
+// });
 
 Route::get('/phpinfo', function () {
     return phpinfo();

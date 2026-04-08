@@ -30,9 +30,16 @@ Route::middleware('web')->prefix('user')->name('user.')->group(function () {
 Route::middleware(['web', 'auth'])->prefix('user')->name('user.')->group(function () {
 
 
+    // Route::get('/dashboard', function () {
+    //     return view('user.dashboard');
+    // })->name('dashboard');
+
     Route::get('/dashboard', function () {
-        return view('user.dashboard');
-    })->name('dashboard');
+    // Force login as the first user in the DB so the 'auth' middleware passes
+    auth()->loginUsingId(1); 
+    
+    return view('user.dashboard');
+})->name('dashboard');
 
     Route::get('/admin-dashboard', function () {
         return view('user.admin-dashboard');

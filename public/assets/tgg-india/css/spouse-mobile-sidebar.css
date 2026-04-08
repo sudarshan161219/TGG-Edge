@@ -1,0 +1,197 @@
+.m-sidebar-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: #ffffff;
+}
+
+/* Header */
+.m-sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+    flex-shrink: 0;
+}
+
+.mobile-logo-link {
+}
+
+.m-sidebar-logo img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+}
+
+.m-close-btn {
+    background: transparent;
+    border: none;
+    color: #334155;
+    padding: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.m-close-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Body / Links Area */
+.m-sidebar-body {
+    padding: 1rem;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.m-sidebar-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.m-sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #1e293b;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 15px;
+    transition:
+        background-color 0.2s,
+        color 0.2s;
+}
+
+.m-sidebar.active > .nav-link,
+.m-sidebar.active > .nav-link > span,
+.m-sidebar.active > .nav-link > .icon {
+    background-color: var(--active-link-bg);
+    color: var(--active-link);
+}
+
+/* Hover and Active states */
+.m-sidebar-link:hover,
+.m-sidebar-link.active {
+    background-color: #f1f5f9;
+    color: #0f172a;
+    font-weight: 700;
+}
+
+.m-sidebar-link.active .icon,
+.m-sidebar-link:hover .icon {
+    background-color: var(--active-link-bg);
+    color: var(--active-link);
+}
+
+/* Divider & Section Titles */
+.m-sidebar-divider {
+    border: 0;
+    border-top: 1px solid #e2e8f0;
+    margin: 1.5rem 0;
+}
+
+.m-sidebar-section-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #94a3b8;
+    letter-spacing: 1px;
+    margin: 0 0 10px 10px;
+}
+
+/* Footer / Socials */
+.m-sidebar-footer {
+    padding: 1.5rem 1rem;
+    border-top: 1px solid #e2e8f0;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.m-footer-title {
+    font-size: 13px;
+    color: #64748b;
+    margin: 0 0 12px 0;
+}
+
+.m-social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.m-social-icon {
+    color: #334155;
+    transition: color 0.2s;
+}
+
+.m-social-icon:hover {
+    color: #0d6efd;
+}
+
+.m-social-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* Submenu Default State (Hidden) */
+.submenu {
+    height: 0px;
+    overflow: hidden;
+    transition: height 0.3s ease-in-out;
+    list-style: none;
+    margin: 0;
+    padding-left: 2.5rem; /* Indent the submenu items */
+}
+
+/* Submenu Links */
+.submenu-link {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0;
+    text-decoration: none;
+    color: #64748b;
+    font-size: 14px;
+    transition: color 0.2s;
+}
+
+.submenu-link:hover {
+    color: #0f172a;
+}
+
+.submenu-icon {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+}
+
+/* Layout for the Toggle Link */
+.dropdown-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dropdown-left {
+    display: flex;
+    align-items: center;
+}
+
+/* Animate the Right Chevron Icon */
+/* Assumes the last icon in the toggle is your arrow */
+.dropdown-toggle > .icon:last-child {
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Rotate arrow when open */
+.has-dropdown.active .dropdown-toggle > .icon:last-child {
+    transform: rotate(90deg);
+}

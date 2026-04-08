@@ -1,315 +1,251 @@
-    @php
-        $user = auth('web2')->user();
-        $modules = $user->modules;
-        $host = request()->getHost();
-        if ($host === 'localhost' || $host === '127.0.0.1') {
-            // Local environment
-            $investmentModules = $user->modules->filter(function ($module) {
-                return $module->slug === 'investment-sip' || $module->name === 'Investment sip';
-            });
-        } else {
-            // Server (production/staging)
-            $investmentModules = $user->modules->filter(function ($module) {
-                return $module->slug === 'investment-for-beginners' || $module->name === 'INVESTMENT FOR BEGINNERS';
-            });
-        }
+@php
+    $user = auth('web2')->user();
+    $modules = $user->modules;
+    $host = request()->getHost();
+    if ($host === 'localhost' || $host === '127.0.0.1') {
+        $investmentModules = $user->modules->filter(function ($module) {
+            return $module->slug === 'investment-sip' || $module->name === 'Investment sip';
+        });
+    } else {
+        $investmentModules = $user->modules->filter(function ($module) {
+            return $module->slug === 'investment-for-beginners' || $module->name === 'INVESTMENT FOR BEGINNERS';
+        });
+    }
 
-        $features = $user->modules->flatMap->features;
-        // Check for specific feature keys
-        $hasLiteratures = $features->contains('feature_key', 'literatures');
-        $hasLinks = $features->contains('feature_key', 'links');
-        $hasVideos = $features->contains('feature_key', 'videos');
-        $otherAccounts = \App\Models\UserSecondary::where('email', $user->email)->where('id', '!=', $user->id)->get();
-        $literatures = \App\Models\Literature::get();
-        $assignments = \App\Models\AssignmentSecondary::where('assigned_to', auth('web2')->id())->get();
-    @endphp
-    <a href="{{ route('tgg-india.co-creator.dashboard') }}"
-        class="{{ request()->is('tgg-india/dashboard') ? 'active' : '' }}">
-        <i class="fas fa-tachometer-alt"></i> Dashboard
-    </a>
+    $features = $user->modules->flatMap->features;
+    $hasLiteratures = $features->contains('feature_key', 'literatures');
+    $hasLinks = $features->contains('feature_key', 'links');
+    $hasVideos = $features->contains('feature_key', 'videos');
+    $otherAccounts = \App\Models\UserSecondary::where('email', $user->email)->where('id', '!=', $user->id)->get();
+    $literatures = \App\Models\Literature::get();
+    $assignments = \App\Models\AssignmentSecondary::where('assigned_to', auth('web2')->id())->get();
+@endphp
 
-    <a href="{{ route('tgg-india.co-creator.profile.index') }}" class="{{ request()->is('user/profile') ? 'active' : '' }}"><i
-            class="fas fa-user"></i> Profile</a>
+<aside class="sidebar">
 
-
-    @if ($otherAccounts->count() > 0)
-        <div class="dropdown mt-2">
-            <a href="#"
-                class="dropdown-toggle d-flex justify-content-between align-items-center {{ request()->is('tgg-india/switch*') ? 'active' : '' }}"
-                data-bs-toggle="collapse" data-bs-target="#switchAccountDropdown"
-                aria-expanded="{{ request()->is('tgg-edge/tgg-india/switch*') ? 'true' : 'false' }}">
-                <span><i class="fas fa-exchange-alt me-2"></i> Switch Account</span>
-                <i class="fas fa-caret-down"></i>
-            </a>
-            <div class="collapse ps-3 {{ request()->is('tgg-india/switch*') ? 'show' : '' }}"
-                id="switchAccountDropdown">
-                @foreach ($otherAccounts as $account)
-                    <a href="{{ route('tgg-india.switch.account', $account->id) }}" class="d-block py-1"
-                        target="_blank">
-                        <i class="fas fa-user me-2"></i>
-                        Switch to {{ ucfirst($account->role_name ?? 'N/A') }} Dashboard
-                    </a>
-                @endforeach
+    <!-- PROFILE -->
+    <div class="profile-section">
+        <div class="bg-color">
+            <div class="avatar-container">
+                <img src="{{ asset('assets/tgg-india/images/svg-viewer.svg') }}" class="profile-avatar">
             </div>
         </div>
-    @endif
 
-    @if ($assignments->count() > 0)
-        <a href="{{ route('tgg-india.co-creator.assignments.index') }}"
-            class="{{ request()->is('tgg-edge/tgg-fct/assignee/assignments*') ? 'active' : '' }}">
-            <i class="fas fa-book"></i> Assignments
-        </a>
-    @endif
-
-    <div class="dropdown">
-        <a href="#"
-            class="dropdown-toggle d-flex justify-content-between align-items-center 
-        {{ request()->is('tgg-meta/tgg-india/co-creator/incentives*') || request()->is('tgg-meta/tgg-india/co-creator/rewards*') || request()->is('tgg-meta/tgg-india/co-creator/invoices*') || request()->is('tgg-meta/tgg-india/co-creator/receipts*') ? 'active' : '' }}"
-            data-bs-toggle="collapse" data-bs-target="#advancementDropdown"
-            aria-expanded="{{ request()->is('tgg-meta/tgg-india/co-creator/incentives*') || request()->is('tgg-meta/tgg-india/co-creator/rewards*') || request()->is('tgg-meta/tgg-india/co-creator/invoices*') || request()->is('tgg-meta/tgg-india/co-creator/receipts*') ? 'true' : 'false' }}">
-            <span><i class="fas fa-arrow-up me-2"></i> Advancement</span>
-            <i class="fas fa-caret-down"></i>
-        </a>
-        <div class="collapse ps-3 {{ request()->is('tgg-meta/tgg-india/co-creator/incentives*') || request()->is('tgg-meta/tgg-india/co-creator/rewards*') || request()->is('tgg-meta/tgg-india/co-creator/invoices*') || request()->is('tgg-meta/tgg-india/co-creator/receipts*') ? 'show' : '' }}"
-            id="advancementDropdown">
-            <a href="{{ route('tgg-india.co-creator.incentives.index') }}" class="d-block py-1">
-                <i class="fas fa-gift me-2"></i> Incentive
-            </a>
-            <a href="{{ route('tgg-india.co-creator.rewards.index') }}" class="d-block py-1">
-                <i class="fas fa-trophy me-2"></i> Reward
-            </a>
-            <a href="{{ route('tgg-india.co-creator.invoices.index') }}" class="d-block py-1">
-                <i class="fas fa-file-invoice me-2"></i> Invoice
-            </a>
-            <a href="{{ route('tgg-india.co-creator.receipts.index') }}" class="d-block py-1">
-                <i class="fas fa-receipt me-2"></i> Receipt
-            </a>
+        <div class="profile-card">
+            <h3 class="profile-name">{{ $user->name ?? 'Co-Creator' }}</h3>
+            <p class="profile-role">Role <span>{{ ucfirst($user->role_name ?? 'Co-Creator') }}</span></p>
+            <p class="profile-id">RHM No: <span>{{ $user->rhm_number ?? 'N/A' }}</span></p>
         </div>
     </div>
 
+    <ul class="nav-menu">
 
-    <div class="dropdown">
-        <a href="#sitemaplink" class="dropdown-toggle d-flex justify-content-between align-items-center"
-            data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sitemaplink">
-            <span><i class="fas fa-sitemap me-2"></i>Links (Sitemap)</span>
-            <i class="fas fa-caret-down"></i>
-        </a>
-        <div class="collapse ps-3 {{ request()->is('user/login') || request()->is('uses/researcher') ? 'show' : '' }}"
-            id="sitemaplink">
-            <a href="{{ url('https://tggindia.com/my-account/') }}" class="d-block py-1" target="_blank"
-                rel="noopener noreferrer">
-                <i class="fas fa-sign-in-alt me-2"></i> Journey with TGG Login
+        <!-- Dashboard -->
+        <li class="nav-item {{ request()->is('tgg-india/dashboard') ? 'active' : '' }}">
+            <a href="{{ route('tgg-india.co-creator.dashboard') }}" class="nav-link sidebar-nav-link">
+                <x-ri-dashboard-line class="icon"/>
+                <span class="nav-label">Dashboard</span>
             </a>
-        </div>
-    </div>
+        </li>
 
-    @if ($user->modules->isNotEmpty())
-        {{-- Top-level Modules dropdown --}}
-        <div class="dropdown">
-            <a href="#"
-                class="dropdown-toggle d-flex justify-content-between align-items-center {{ request()->is('tgg-meta/tgg-india/co-creator/modules*') ? 'active' : '' }}"
-                data-bs-toggle="collapse" data-bs-target="#modulesDropdown"
-                aria-expanded="{{ request()->is('tgg-meta/tgg-india/co-creator/modules*') ? 'true' : 'false' }}">
-                <span><i class="fas fa-flask"></i> Modules</span>
-                <i class="fas fa-caret-down"></i>
+        <!-- Profile -->
+        <li class="nav-item {{ request()->is('user/profile') ? 'active' : '' }}">
+            <a href="{{ route('tgg-india.co-creator.profile.index') }}" class="nav-link sidebar-nav-link">
+                <x-heroicon-o-user class="icon"/>
+                <span class="nav-label">Profile</span>
             </a>
+        </li>
 
-            <div class="collapse ps-3 {{ request()->is('tgg-meta/tgg-india/co-creator/modules*') ? 'show' : '' }}"
-                id="modulesDropdown">
-                @foreach ($user->modules as $module)
-                    @php
-                        $moduleId = 'module-' . $module->id;
-                        $moduleInstance = \App\Models\ModuleInstance::where('module_id', $module->id)->first();
-                        $moduleInstanceId = $moduleInstance ? $moduleInstance->id : null;
-                        $literatures = \App\Models\Literature::where('module_instance_id', $moduleInstanceId)->get();
+        <!-- Switch Account -->
+        @if ($otherAccounts->count() > 0)
+            @php $isSwitchActive = request()->is('tgg-india/switch*'); @endphp
+            <li class="nav-item has-dropdown {{ $isSwitchActive ? 'is-open' : '' }}">
+                <a href="javascript:void(0)" class="nav-link sidebar-nav-link dropdown-toggle">
+                    <div class="dropdown-left">
+                        <x-heroicon-o-user-group class="icon" />
+                        <span class="nav-label">Switch Account</span>
+                    </div>
+                    <x-heroicon-o-chevron-right class="icon chevron-icon"/>
+                </a>
+                <ul class="submenu" style="{{ $isSwitchActive ? 'height:auto;' : '' }}">
+                    @foreach ($otherAccounts as $account)
+                        <li>
+                            <a href="{{ route('tgg-india.switch.account', $account->id) }}" class="submenu-link" target="_blank">
+                                <span class="nav-label">Switch to {{ ucfirst($account->role_name ?? 'N/A') }}</span>
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+            </li>
+        @endif
 
-                        // Default flags
-                        $isModuleActive = false;
-                        $activeLiteratureId = null;
-                        $activeSectionId = null;
-                        $activeChapterId = null;
+        <!-- Assignments -->
+        @if ($assignments->count() > 0)
+            <li class="nav-item {{ request()->is('tgg-edge/tgg-fct/assignee/assignments*') ? 'active' : '' }}">
+                <a href="{{ route('tgg-india.co-creator.assignments.index') }}" class="nav-link sidebar-nav-link">
+                    <x-heroicon-o-clipboard-document-list class="icon"/>
+                    <span class="nav-label">Assignments</span>
+                </a>
+            </li>
+        @endif
 
-                        // Find which literature/section/chapter is active based on the URL
-                        foreach ($literatures as $lit) {
-                            foreach ($lit->sections as $sec) {
-                                foreach ($sec->chapters as $ch) {
-                                    if (request()->is('tgg-meta/tgg-india/co-creator/modules/chapters/' . $ch->id)) {
-                                        $isModuleActive = true;
-                                        $activeLiteratureId = $lit->id;
-                                        $activeSectionId = $sec->id;
-                                        $activeChapterId = $ch->id;
+        <!-- Advancement Dropdown (Incentive, Reward, Invoice, Receipt) -->
+        @php
+            $isAdvancementActive = request()->is('tgg-meta/tgg-india/co-creator/incentives*') ||
+                                   request()->is('tgg-meta/tgg-india/co-creator/rewards*') ||
+                                   request()->is('tgg-meta/tgg-india/co-creator/invoices*') ||
+                                   request()->is('tgg-meta/tgg-india/co-creator/receipts*');
+        @endphp
+        <li class="nav-item has-dropdown {{ $isAdvancementActive ? 'is-open' : '' }}">
+            <a href="javascript:void(0)" class="nav-link sidebar-nav-link dropdown-toggle">
+                <div class="dropdown-left">
+                    <x-heroicon-o-arrow-trending-up class="icon"/>
+                    <span class="nav-label">Advancement</span>
+                </div>
+                <x-heroicon-o-chevron-right class="icon chevron-icon"/>
+            </a>
+            <ul class="submenu" style="{{ $isAdvancementActive ? 'height:auto;' : '' }}">
+                <li><a href="{{ route('tgg-india.co-creator.incentives.index') }}" class="submenu-link">Incentive</a></li>
+                <li><a href="{{ route('tgg-india.co-creator.rewards.index') }}" class="submenu-link">Reward</a></li>
+                <li><a href="{{ route('tgg-india.co-creator.invoices.index') }}" class="submenu-link">Invoice</a></li>
+                <li><a href="{{ route('tgg-india.co-creator.receipts.index') }}" class="submenu-link">Receipt</a></li>
+            </ul>
+        </li>
+
+        <!-- Links (Sitemap) Dropdown -->
+        <li class="nav-item has-dropdown">
+            <a href="javascript:void(0)" class="nav-link sidebar-nav-link dropdown-toggle">
+                <div class="dropdown-left">
+                    <x-ri-map-line class="icon"/>
+                    <span class="nav-label">Links (Sitemap)</span>
+                </div>
+                <x-heroicon-o-chevron-right class="icon chevron-icon"/>
+            </a>
+            <ul class="submenu">
+                <li><a href="https://tggindia.com/my-account/" class="submenu-link" target="_blank">Journey with TGG Login</a></li>
+            </ul>
+        </li>
+
+        <!-- Modules Dropdown (dynamic) -->
+        @if ($user->modules->isNotEmpty())
+            @php
+                $isModulesActive = request()->is('tgg-meta/tgg-india/co-creator/modules*');
+            @endphp
+            <li class="nav-item has-dropdown {{ $isModulesActive ? 'is-open' : '' }}">
+                <a href="javascript:void(0)" class="nav-link sidebar-nav-link dropdown-toggle">
+                    <div class="dropdown-left">
+                        <x-heroicon-o-cube class="icon"/>
+                        <span class="nav-label">Modules</span>
+                    </div>
+                    <x-heroicon-o-chevron-right class="icon chevron-icon"/>
+                </a>
+                <ul class="submenu" style="{{ $isModulesActive ? 'height:auto;' : '' }}">
+                    @foreach ($user->modules as $module)
+                        @php
+                            $moduleInstance = \App\Models\ModuleInstance::where('module_id', $module->id)->first();
+                            $moduleInstanceId = $moduleInstance ? $moduleInstance->id : null;
+                            $literatures = \App\Models\Literature::where('module_instance_id', $moduleInstanceId)->get();
+
+                            $isModuleActive = false;
+                            $activeLiteratureId = null;
+                            $activeSectionId = null;
+                            $activeChapterId = null;
+
+                            foreach ($literatures as $lit) {
+                                foreach ($lit->sections as $sec) {
+                                    foreach ($sec->chapters as $ch) {
+                                        if (request()->is('tgg-meta/tgg-india/co-creator/modules/chapters/' . $ch->id)) {
+                                            $isModuleActive = true;
+                                            $activeLiteratureId = $lit->id;
+                                            $activeSectionId = $sec->id;
+                                            $activeChapterId = $ch->id;
+                                        }
                                     }
                                 }
                             }
-                        }
-                        if (
-                            (request()->is('tgg-meta/tgg-india/co-creator/modules/links') &&
-                                request()->get('module_instance_id') == $moduleInstanceId) ||
-                            (request()->is('tgg-meta/tgg-india/co-creator/modules/videos') &&
-                                request()->get('module_instance_id') == $moduleInstanceId)
-                        ) {
-                            $isModuleActive = true;
-                        }
-                    @endphp
+                            if ((request()->is('tgg-meta/tgg-india/co-creator/modules/links') && request()->get('module_instance_id') == $moduleInstanceId) ||
+                                (request()->is('tgg-meta/tgg-india/co-creator/modules/videos') && request()->get('module_instance_id') == $moduleInstanceId)) {
+                                $isModuleActive = true;
+                            }
+                        @endphp
 
-                    {{-- MODULE --}}
-                    <div class="dropdown">
-                        <a href="#"
-                            class="dropdown-toggle d-flex justify-content-between align-items-center {{ $isModuleActive ? 'active' : '' }}"
-                            data-bs-toggle="collapse" data-bs-target="#{{ $moduleId }}"
-                            aria-expanded="{{ $isModuleActive ? 'true' : 'false' }}"
-                            aria-controls="{{ $moduleId }}">
-                            <span><i class="fas fa-flask"></i> {{ $module->name }}</span>
-                            <i class="fas fa-caret-down"></i>
-                        </a>
-
-                        <div class="collapse ps-3 {{ $isModuleActive ? 'show' : '' }}" id="{{ $moduleId }}"
-                            data-bs-parent="#modulesDropdown">
-
-                            {{-- LITERATURES --}}
-                            @foreach ($literatures as $literature)
-                                @php
-                                    $literatureId = 'literature-' . $literature->id;
-                                    $isLiteratureActive = $activeLiteratureId === $literature->id;
-                                @endphp
-
-                                <a href="#"
-                                    class="dropdown-toggle d-flex justify-content-between align-items-center {{ $isLiteratureActive ? 'active' : '' }}"
-                                    data-bs-toggle="collapse" data-bs-target="#{{ $literatureId }}"
-                                    aria-expanded="{{ $isLiteratureActive ? 'true' : 'false' }}"
-                                    aria-controls="{{ $literatureId }}">
-                                    <span><i class="fas fa-book"></i> {{ $literature->title }}</span>
-                                    <i class="fas fa-caret-down"></i>
-                                </a>
-
-                                <div class="collapse ps-3 {{ $isLiteratureActive ? 'show' : '' }}"
-                                    id="{{ $literatureId }}" data-bs-parent="#{{ $moduleId }}">
-
-                                    {{-- SECTIONS --}}
-                                    @foreach ($literature->sections as $section)
-                                        @php
-                                            $sectionId = 'section-' . $section->id;
-                                            $isSectionActive = $activeSectionId === $section->id;
-                                        @endphp
-
-                                        <a href="#"
-                                            class="dropdown-toggle d-flex justify-content-between align-items-center {{ $isSectionActive ? 'active' : '' }}"
-                                            data-bs-toggle="collapse" data-bs-target="#{{ $sectionId }}"
-                                            aria-expanded="{{ $isSectionActive ? 'true' : 'false' }}"
-                                            aria-controls="{{ $sectionId }}">
-                                            <span><i class="fas fa-list"></i> {{ $section->title }}</span>
-                                            <i class="fas fa-caret-down"></i>
+                        <!-- Single Module -->
+                        <li class="nav-item has-dropdown {{ $isModuleActive ? 'is-open' : '' }}" style="margin-left: 0;">
+                            <a href="javascript:void(0)" class="submenu-link dropdown-toggle">
+                                <span class="nav-label">{{ $module->name }}</span>
+                                <x-heroicon-o-chevron-right class="icon chevron-icon"/>
+                            </a>
+                            <ul class="submenu" style="{{ $isModuleActive ? 'height:auto;' : '' }}">
+                                <!-- Literatures -->
+                                @foreach ($literatures as $literature)
+                                    @php $isLiteratureActive = ($activeLiteratureId === $literature->id); @endphp
+                                    <li class="nav-item has-dropdown {{ $isLiteratureActive ? 'is-open' : '' }}">
+                                        <a href="javascript:void(0)" class="submenu-link dropdown-toggle">
+                                            <span class="nav-label">{{ $literature->title }}</span>
+                                            <x-heroicon-o-chevron-right class="icon chevron-icon"/>
                                         </a>
-
-                                        <div class="collapse ps-3 {{ $isSectionActive ? 'show' : '' }}"
-                                            id="{{ $sectionId }}" data-bs-parent="#{{ $literatureId }}">
-                                            {{-- CHAPTERS --}}
-                                            @foreach ($section->chapters as $chapter)
-                                                <a href="{{ route('tgg-india.co-creator.modules.chapters', $chapter->id) }}"
-                                                    class="{{ request()->is('tgg-meta/tgg-india/co-creator/modules/chapters/' . $chapter->id) ? 'active' : '' }}">
-                                                    <i class="fas fa-book"></i> {{ $chapter->title }}
-                                                </a>
+                                        <ul class="submenu" style="{{ $isLiteratureActive ? 'height:auto;' : '' }}">
+                                            @foreach ($literature->sections as $section)
+                                                @php $isSectionActive = ($activeSectionId === $section->id); @endphp
+                                                <li class="nav-item has-dropdown {{ $isSectionActive ? 'is-open' : '' }}">
+                                                    <a href="javascript:void(0)" class="submenu-link dropdown-toggle">
+                                                        <span class="nav-label">{{ $section->title }}</span>
+                                                        <x-heroicon-o-chevron-right class="icon chevron-icon"/>
+                                                    </a>
+                                                    <ul class="submenu" style="{{ $isSectionActive ? 'height:auto;' : '' }}">
+                                                        @foreach ($section->chapters as $chapter)
+                                                            <li>
+                                                                <a href="{{ route('tgg-india.co-creator.modules.chapters', $chapter->id) }}" class="submenu-link {{ request()->is('tgg-meta/tgg-india/co-creator/modules/chapters/'.$chapter->id) ? 'active' : '' }}">
+                                                                    <span class="nav-label">{{ $chapter->title }}</span>
+                                                                </a>
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
+                                                </li>
                                             @endforeach
-                                        </div>
-                                    @endforeach
-                                </div>
-                            @endforeach
+                                            @if ($hasLinks)
+                                                <li><a href="{{ route('tgg-india.co-creator.modules.links') }}?module_instance_id={{ $moduleInstanceId }}" class="submenu-link {{ request()->is('tgg-meta/tgg-india/co-creator/modules/links') ? 'active' : '' }}">Links</a></li>
+                                            @endif
+                                            @if ($hasVideos)
+                                                <li><a href="{{ route('tgg-india.co-creator.modules.videos') }}?module_instance_id={{ $moduleInstanceId }}" class="submenu-link {{ request()->is('tgg-meta/tgg-india/co-creator/modules/videos') ? 'active' : '' }}">Videos</a></li>
+                                            @endif
+                                        </ul>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
+                    @endforeach
+                </ul>
+            </li>
+        @endif
 
-                            {{-- LINKS --}}
-                            @if ($hasLinks)
-                                <a href="{{ route('tgg-india.co-creator.modules.links') }}?module_instance_id={{ $moduleInstanceId }}"
-                                    class="{{ request()->is('tgg-meta/tgg-india/co-creator/modules/links') ? 'active' : '' }}">
-                                    <i class="fas fa-link"></i> Links
-                                </a>
-                            @endif
-
-                            {{-- VIDEOS --}}
-                            @if ($hasVideos)
-                                <a href="{{ route('tgg-india.co-creator.modules.videos') }}?module_instance_id={{ $moduleInstanceId }}"
-                                    class="{{ request()->is('tgg-meta/tgg-india/co-creator/modules/videos') ? 'active' : '' }}">
-                                    <i class="fas fa-video"></i> Videos
-                                </a>
-                            @endif
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    @endif
-
-
-
-    <div class="dropdown">
-        <a href="#referrallink"
-            class="dropdown-toggle d-flex justify-content-between align-items-center {{ request()->is('tgg-meta/tgg-india/co-creator/referral/program*') || request()->is('tgg-india/admin/referral/tracking*') ? 'active' : '' }}"
-            data-bs-toggle="collapse" role="button"
-            aria-expanded="{{ request()->is('tgg-meta/tgg-india/co-creator/referral/program*') || request()->is('tgg-india/admin/referral/tracking*') ? 'true' : 'false' }}"
-            aria-controls="referrallink">
-            <span><i class="fas fa-share-alt me-2"></i>Referral</span>
-            <i class="fas fa-caret-down"></i>
-        </a>
-
-        <div id="referrallink"
-            class="collapse ps-3 {{ request()->is('tgg-meta/tgg-india/co-creator/referral/program*') || request()->is('tgg-india/admin/referral/tracking*') ? 'show' : '' }}">
-            <a href="{{ route('tgg-india.co-creator.referral.program') }}"
-                class="d-block py-1 {{ request()->is('tgg-meta/tgg-india/co-creator/referral/program*') ? 'active' : '' }}">
-                <i class="fas fa-project-diagram me-2"></i>Referral Program
-            </a>
-
-            <a href="{{ route('tgg-india.co-creator.referral.tracking') }}"
-                class="d-block py-1 {{ request()->is('tgg-india/admin/referral/tracking*') ? 'active' : '' }}">
-                <i class="fas fa-chart-line me-2"></i>Referral Tracking
-            </a>
-        </div>
-    </div>
-
-
-    <a href="{{ route('tgg-india.logout') }}"><i class="fas fa-sign-out-alt"></i> Log out</a>
-
-    @if (url()->current() === url('tgg-meta/tgg-india/co-creator/dashboard'))
-        <div class="card tgg_news">
-            <h3 class="card-title">TGG NEWS</h3>
-            <div class="card-inner">
-                <div class="slider"
-                    style="
-                height: 220px !important;
-                width: auto !important">
-                    @if (!empty($showcase->tgg_news))
-                        @foreach ($showcase->tgg_news as $news)
-                            <div class="slide "
-                                style="
-                                height: 220px !important;
-                                width: auto !important margin: 10px !important;">
-                                <iframe width="100%" height="200" src="{{ getEmbedUrl($news) }}"
-                                    frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    allowfullscreen>
-                                </iframe>
-                            </div>
-                        @endforeach
-                    @else
-                        <p>No news available</p>
-                    @endif
+        <!-- Referral Dropdown -->
+        @php
+            $isReferralActive = request()->is('tgg-meta/tgg-india/co-creator/referral/program*') ||
+                                request()->is('tgg-india/admin/referral/tracking*');
+        @endphp
+        <li class="nav-item has-dropdown {{ $isReferralActive ? 'is-open' : '' }}">
+            <a href="javascript:void(0)" class="nav-link sidebar-nav-link dropdown-toggle">
+                <div class="dropdown-left">
+                    <x-heroicon-o-share class="icon"/>
+                    <span class="nav-label">Referral</span>
                 </div>
-            </div>
-        </div>
-    @endif
+                <x-heroicon-o-chevron-right class="icon chevron-icon"/>
+            </a>
+            <ul class="submenu" style="{{ $isReferralActive ? 'height:auto;' : '' }}">
+                <li><a href="{{ route('tgg-india.co-creator.referral.program') }}" class="submenu-link">Referral Program</a></li>
+                <li><a href="{{ route('tgg-india.co-creator.referral.tracking') }}" class="submenu-link">Referral Tracking</a></li>
+            </ul>
+        </li>
 
+    </ul>
 
-    {{-- WhatsApp Message Admin Box --}}
-    <div class="mt-4 p-4 border rounded bg-light text-center shadow-sm" style="min-height: 220px;">
-        <h6 class="fw-bold mb-3 text-dark">
-            <i class="fab fa-whatsapp text-success me-1"></i> Message Admin
-        </h6>
-
-        <p class="small text-muted mb-4">
-            Need help? Chat directly with the admin on WhatsApp.
-        </p>
-
-        {{-- 🔗 Replace 919995329536 with admin WhatsApp number --}}
-        {{-- And replace the text after ?text= with your own message (use %20 for spaces) --}}
-        <a href="https://wa.me/919995329536/?text=Hello%20Admin,%20I%20need%20some%20help." target="_blank"
-            class="btn btn-success w-100 d-flex align-items-center justify-content-center py-2">
-            <i class="fab fa-whatsapp me-2"></i> Start Chat
+    <!-- LOGOUT -->
+    <div class="logout-section">
+        <a href="{{ route('tgg-india.logout') }}" class="logout-btn">
+            <x-heroicon-o-arrow-right-on-rectangle class="logout-icon"/>
+            <span class="nav-label">Log out</span>
         </a>
     </div>
+
+</aside>
